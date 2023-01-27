@@ -1,0 +1,27 @@
+body {
+  margin: 100px auto;
+  max-width: 600px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wp-logo {
+  width: 150px;
+}
+
+.firebase-logo {
+  width: 80px;
+}
+
+.cross {
+  margin: 0 50px 0 20px;
+  font-size: 50px;
+}
