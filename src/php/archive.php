@@ -11,9 +11,9 @@
       foreach($my_posts as $post):
         setup_postdata($post);
       ?>
-    <article>
-      <h3><?php echo get_title(); ?></h3>
-    </article>
+    <a href="<?php echo get_the_permalink(); ?>">
+      <h3><?php echo get_the_title(); ?></h3>
+    </a>
     <?php endforeach; ?>
   </div>
 </main>
