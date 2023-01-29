@@ -26,11 +26,11 @@ const compressCSS = () => {
 };
 
 // JSの圧縮
-const compressJS = () => {
-  return src("./src/js/**/*.js")
-    .pipe(plumber(notify.onError("Error: <%= error.message %>")))
-    .pipe(dest(`./wp-theme/js`));
-};
+// const compressJS = () => {
+//   return src("./src/js/**/*.js")
+//     .pipe(plumber(notify.onError("Error: <%= error.message %>")))
+//     .pipe(dest(`./wp-theme/js`));
+// };
 
 // 画像の圧縮
 const compressImage = () => {
@@ -48,7 +48,7 @@ const browserSetting = (done) => {
     notify: false,
     reloadOnRestart: true,
     files: ["src/**/*"],
-    proxy: "http://localhost:8000",
+    proxy: "http://wordpressfirebase.local",
   });
   done();
 };
@@ -64,7 +64,6 @@ const watchFile = () => {
   watch("./src/php/**/*.php", series(copyPHP, browserReload));
   watch("./src/style.css", series(copyStyle, browserReload));
   watch("./src/css/**/*.css", series(compressCSS, browserReload));
-  watch("./src/js/**/*.js", series(compressJS, browserReload));
   watch("./src/image/**/*", series(compressImage, browserReload));
 };
 
@@ -72,15 +71,8 @@ exports.default = series(
   copyPHP,
   copyStyle,
   compressCSS,
-  compressJS,
   compressImage,
   parallel(browserSetting, watchFile)
 );
 
-exports.build = series(
-  copyPHP,
-  copyStyle,
-  compressCSS,
-  compressJS,
-  compressImage
-);
+exports.build = series(copyPHP, copyStyle, compressCSS, compressImage);
