@@ -9,3 +9,6 @@ function change_cron_port( $cron_request ) {
   return $cron_request;
 }
 add_filter( 'cron_request', 'change_cron_port', 8000 );
+
+// サムネイル画像有効化
+add_theme_support('post-thumbnails');
